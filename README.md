@@ -95,7 +95,7 @@ platform :ios, '12.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'PrettyrLayout'
+    pod 'PrettyLayout'
 end
 ```
 
@@ -113,9 +113,44 @@ If you prefer not to use either of the aforementioned dependency managers, you c
 
 ## Usage
 
-### Quick Start
+### Describe constraints when you adding view to hierarhy
 
-//TODO:
+```swift
+view.addSubview(label, constraints: [
+ equal(\.topAnchor)
+ equal(\.leadingAnchor),
+ equal(\.trailingAnchor)           
+])
+```
+You can also describe relationship to other child, constants, and priority.
+
+```swift
+view.addSubview(button, constraints: [
+ equal(\.topAnchor, to: label, \.bottomAnchor, constant: 16, priority: .defaultHigh)
+ equal(\.leadingAnchor),
+ equal(\.trailingAnchor)           
+])
+```
+In this example button was added to view under the label with offset.
+
+### Functions
+
+- `equal`
+- `lessOrEqual`
+- `greaterOrEqual`
+
+### Preset functions
+
+You can use preset function for reduce the code:
+
+- `Constraints.pin`
+- `Constraints.center`
+- `Constraints.with(insets:)`
+- `Constraints.fixedSize`
+- `RespectBottomSafeAreaConstraints.pin`
+- `RespectBottomSafeAreaConstraints.with(insets:)`
+- `RespectSafeAreaConstraints.pin`
+- `RespectSafeAreaConstraints.with(insets:)`
 
 ## License
 
